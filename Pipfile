@@ -7,6 +7,7 @@ name = "pypi"
 pytest = "*"
 dailydose = {editable = true, path = "."}
 english-words = "*"
+flake8 = "*"
 
 [dev-packages]
 
