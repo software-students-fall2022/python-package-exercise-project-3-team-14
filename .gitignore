@@ -148,5 +148,5 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 *.iml
-.idea/.name
+.idea/
 *.xml
