@@ -1,9 +1,8 @@
-import dailydose.wisdom as wisdom
+import daily
 
 
 def main():
-    line = wisdom.get()
-    print(line)
+    daily.hangman(5)
 
 
 if __name__ == '__main__':
