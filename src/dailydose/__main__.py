@@ -1,8 +1,8 @@
-import daily
+from hang import hangman
 
 
 def main():
-    daily.hangman(5)
+    hangman(5)
 
 
 if __name__ == '__main__':
