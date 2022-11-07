@@ -1,4 +1,3 @@
-import pytest
 from src.dailydose import wisdom
 
 class Tests:
