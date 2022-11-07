@@ -1,4 +1,4 @@
-from hang import hangman
+from dailydose.hang import hangman
 
 
 def main():
