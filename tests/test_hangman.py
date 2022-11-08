@@ -1,6 +1,5 @@
 from _pytest.monkeypatch import MonkeyPatch
 from english_words import english_words_set
-import random
 import string
 from src.dailydose import hang
 
@@ -22,7 +21,8 @@ class Tests:
         The word should have length in between 4 and 10
         """
         self.monkeypatch = MonkeyPatch()
-        self.monkeypatch.setattr('builtins.input', lambda _: random.choice(string.ascii_letters))
+        inputs = iter(list(string.ascii_lowercase))
+        self.monkeypatch.setattr('builtins.input', lambda _: next(inputs))
         for i in range(-1, 12):
             actual = len(hang.hangman(i))
             assert actual >= 4 or actual <= 10, f"Expect the length of word to be between 4 and 10"
@@ -32,7 +32,8 @@ class Tests:
         Test if the word is in the set of english word
         """
         self.monkeypatch = MonkeyPatch()
-        self.monkeypatch.setattr('builtins.input', lambda _: random.choice(string.ascii_letters))
+        inputs = iter(list(string.ascii_lowercase))
+        self.monkeypatch.setattr('builtins.input', lambda _: next(inputs))
         for i in range(-1, 12):
             actual = hang.hangman(i)
             assert actual in english_words_set, f"Expect word to be in the set of English word"
@@ -42,7 +43,8 @@ class Tests:
         Test if function works properly with abnormal input
         """
         self.monkeypatch = MonkeyPatch()
-        self.monkeypatch.setattr('builtins.input', lambda _: random.choice(string.ascii_letters))
+        inputs = iter(list(string.ascii_lowercase))
+        self.monkeypatch.setattr('builtins.input', lambda _: next(inputs))
         actual = hang.hangman("a")
         assert actual == "code 1", f"Expect the function to return code 1 for abnormal input"
         actual1 = hang.hangman(" ")
