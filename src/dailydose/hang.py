@@ -28,6 +28,9 @@ def print_hangman(num_guess, total_num):
 
 
 def hangman(num_letter):
+    if type(num_letter) != int:
+        print("The function only take positive integers!")
+        return "code 1"
     if num_letter < 4:
         num_letter = 4
     if num_letter > 10:
