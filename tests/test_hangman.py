@@ -7,9 +7,6 @@ from src.dailydose import hang
 
 class Tests:
 
-    def set_up(self):
-        self.monkeypatch = MonkeyPatch()
-
     def test_sanity_check(self):
         """
         Test debugging... making sure that we can run a simple test that always passes.
@@ -24,6 +21,7 @@ class Tests:
         Test the length of the word returned
         The word should have length in between 4 and 10
         """
+        self.monkeypatch = MonkeyPatch()
         self.monkeypatch.setattr('builtins.input', lambda _: random.choice(string.ascii_letters))
         for i in range(-1, 12):
             actual = len(hang.hangman(i))
@@ -33,6 +31,7 @@ class Tests:
         """
         Test if the word is in the set of english word
         """
+        self.monkeypatch = MonkeyPatch()
         self.monkeypatch.setattr('builtins.input', lambda _: random.choice(string.ascii_letters))
         for i in range(-1, 12):
             actual = hang.hangman(i)
@@ -42,6 +41,7 @@ class Tests:
         """
         Test if function works properly with abnormal input
         """
+        self.monkeypatch = MonkeyPatch()
         self.monkeypatch.setattr('builtins.input', lambda _: random.choice(string.ascii_letters))
         actual = hang.hangman("a")
         assert actual == "code 1", f"Expect the function to return code 1 for abnormal input"
