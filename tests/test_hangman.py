@@ -21,9 +21,9 @@ class Tests:
         The word should have length in between 4 and 10
         """
         self.monkeypatch = MonkeyPatch()
-        inputs = iter(list(string.ascii_lowercase))
+        inputs = iter(list(string.ascii_lowercase)*13)
+        self.monkeypatch.setattr('builtins.input', lambda _: next(inputs))
         for i in range(-1, 12):
-            self.monkeypatch.setattr('builtins.input', lambda _: next(inputs))
             actual = len(hang.hangman(i))
             assert actual >= 4 or actual <= 10, f"Expect the length of word to be between 4 and 10"
 
@@ -32,9 +32,9 @@ class Tests:
         Test if the word is in the set of english word
         """
         self.monkeypatch = MonkeyPatch()
-        inputs = iter(list(string.ascii_lowercase))
+        inputs = iter(list(string.ascii_lowercase)*13)
+        self.monkeypatch.setattr('builtins.input', lambda _: next(inputs))
         for i in range(-1, 12):
-            self.monkeypatch.setattr('builtins.input', lambda _: next(inputs))
             actual = hang.hangman(i)
             assert actual in english_words_set, f"Expect word to be in the set of English word"
 
@@ -44,15 +44,15 @@ class Tests:
         """
         self.monkeypatch = MonkeyPatch()
         inputs = iter(list(string.ascii_lowercase))
-        self.monkeypatch.setattr('builtins.input', lambda _: next(inputs))
+        self.monkeypatch.setattr('builtins.input', lambda _: next(inputs)*4)
         actual = hang.hangman("a")
         assert actual == "code 1", f"Expect the function to return code 1 for abnormal input"
-        self.monkeypatch.setattr('builtins.input', lambda _: next(inputs))
+        self.monkeypatch.setattr('builtins.input', lambda _: next(inputs)*4)
         actual1 = hang.hangman(" ")
         assert actual1 == "code 1", f"Expect the function to return code 1 for abnormal input"
-        self.monkeypatch.setattr('builtins.input', lambda _: next(inputs))
+        self.monkeypatch.setattr('builtins.input', lambda _: next(inputs)*4)
         actual2 = hang.hangman("\n")
         assert actual2 == "code 1", f"Expect the function to return code 1 for abnormal input"
-        self.monkeypatch.setattr('builtins.input', lambda _: next(inputs))
+        self.monkeypatch.setattr('builtins.input', lambda _: next(inputs)*4)
         actual3 = hang.hangman(4.1)
         assert actual3 == "code 1", f"Expect the function to return code 1 for abnormal input"
