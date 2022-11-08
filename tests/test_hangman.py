@@ -1,5 +1,5 @@
 from _pytest.monkeypatch import MonkeyPatch
-from english_words import english_words_set
+from english_words import english_words_lower_alpha_set
 import string
 from src.dailydose import hang
 
@@ -42,7 +42,7 @@ class Tests:
             j = i+1
             self.monkeypatch.setattr('builtins.input', lambda _: next(iter_list[j]))
             actual = hang.hangman(i)
-            assert actual in english_words_set, f"Expect word to be in the set of English word"
+            assert actual in english_words_lower_alpha_set, f"Expect word to be in the set of English word"
 
     def test_hangman_input(self):
         """
