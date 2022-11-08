@@ -1,4 +1,4 @@
-from english_words import english_words_set
+from english_words import english_words_lower_alpha_set
 import random
 
 
@@ -28,13 +28,16 @@ def print_hangman(num_guess, total_num):
 
 
 def hangman(num_letter):
+    if type(num_letter) != int:
+        print("The function only take positive integers!")
+        return "code 1"
     if num_letter < 4:
         num_letter = 4
     if num_letter > 10:
         num_letter = 10
     word = ""
-    while len(word) != num_letter:
-        word = random.choice(list(english_words_set))
+    while len(word) != num_letter or not word.isalpha():
+        word = random.choice(list(english_words_lower_alpha_set)).lower()
     view = ["\u0332  "] * len(word)
     total_guess = 2*len(word)
     num_guess = total_guess
