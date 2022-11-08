@@ -36,8 +36,8 @@ def hangman(num_letter):
     if num_letter > 10:
         num_letter = 10
     word = ""
-    while len(word) != num_letter:
-        word = random.choice(list(english_words_set))
+    while len(word) != num_letter or not word.isalpha():
+        word = random.choice(list(english_words_set)).lower()
     view = ["\u0332  "] * len(word)
     total_guess = 2*len(word)
     num_guess = total_guess
