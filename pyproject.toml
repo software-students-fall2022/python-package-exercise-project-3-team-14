@@ -7,12 +7,12 @@ name = "dailydose"
 description = "A package that gives you your daily dose of fun!"
 version = "0.0.2"
 authors = [
-  { name="Larry Li", email="zl2902@nyu.edu" },
-  { name="Sneheel Sarangi", email="ss14247@nyu.edu" },
-  { name="Paula Seraphim", email="pas580@nyu.edu" },
-  { name="Winston Zhang", email="shz231@nyu.edu" },
+  "Larry Li <zl2902@nyu.edu>",
+  "Sneheel Sarangi <ss14247@nyu.edu>",
+  "Paula Seraphim <pas580@nyu.edu>",
+  "Winston Zhang <shz231@nyu.edu>",
 ]
-license = "GNU GENERAL PUBLIC LICENSE Version 3"
+license = { file = "LICENSE" }
 readme = "README.md"
 keywords = ["dailydose"]
 requires-python = ">=3.7"
