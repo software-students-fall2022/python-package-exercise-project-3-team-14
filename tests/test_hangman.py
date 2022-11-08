@@ -21,9 +21,12 @@ class Tests:
         The word should have length in between 4 and 10
         """
         self.monkeypatch = MonkeyPatch()
-        inputs = iter(list(string.ascii_lowercase)*14)
-        self.monkeypatch.setattr('builtins.input', lambda _: next(inputs))
+        iter_list = []
+        for i in range(13):
+            iter_list.append(iter(list(string.ascii_lowercase)))
         for i in range(-1, 12):
+            j = i+1
+            self.monkeypatch.setattr('builtins.input', lambda _: next(iter_list[j]))
             actual = len(hang.hangman(i))
             assert actual >= 4 or actual <= 10, f"Expect the length of word to be between 4 and 10"
 
@@ -32,9 +35,12 @@ class Tests:
         Test if the word is in the set of english word
         """
         self.monkeypatch = MonkeyPatch()
-        inputs = iter(list(string.ascii_lowercase)*14)
-        self.monkeypatch.setattr('builtins.input', lambda _: next(inputs))
+        iter_list = []
+        for i in range(13):
+            iter_list.append(iter(list(string.ascii_lowercase)))
         for i in range(-1, 12):
+            j = i+1
+            self.monkeypatch.setattr('builtins.input', lambda _: next(iter_list[j]))
             actual = hang.hangman(i)
             assert actual in english_words_set, f"Expect word to be in the set of English word"
 
