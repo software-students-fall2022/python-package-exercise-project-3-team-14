@@ -5,19 +5,19 @@ import sys
 
 def get(ship_size="4", dimension = "10"):
     if isinstance(ship_size,int) and isinstance(dimension,int):
-        if ship_size<dimension and dimension<=20 and dimension>0 and ship_size>0:
+        if ship_size<dimension and dimension<=10 and dimension>0 and ship_size>0:
             return ship_size,dimension
         else:
-            print("The ship needs to be smaller than the board and maximum dimension size is 20, resorting to default inputs: Ship_size:4, Dimensions:10")
+            print("The ship needs to be smaller than the board and maximum dimension size is 10, resorting to default inputs: Ship_size:4, Dimensions:10")
             return 4,10
     elif isinstance(ship_size,str) and isinstance(dimension,str):
         if ship_size.isnumeric() and dimension.isnumeric():
             ship_size=int(ship_size)
             dimension=int(dimension)
-            if ship_size<=dimension and dimension<=20 and dimension>0 and ship_size>0:
+            if ship_size<=dimension and dimension<=10 and dimension>0 and ship_size>0:
                 return ship_size,dimension
             else:
-                print("The ship needs to be smaller than the board and maximum dimension size is 20, resorting to default inputs: Ship_size:4, Dimensions:10")
+                print("The ship needs to be smaller than the board and maximum dimension size is 10, resorting to default inputs: Ship_size:4, Dimensions:10")
                 return 4,10
         else:
             print("Invalid input type, returning default values")
@@ -134,7 +134,7 @@ if __name__ == "__main__":
     else:
         choice=input("No command line input detected. Do you want to select custom ship size, board dimensions? (y/n)")
         if choice=="Y" or choice=="y":
-            dimension=input("Input board dimensions (1-20): ")
+            dimension=input("Input board dimensions (1-10): ")
             ship_size=input("Input ship size (lesser than dimension of board): ")
             ship_size,dimension = get(ship_size,dimension)
         else:

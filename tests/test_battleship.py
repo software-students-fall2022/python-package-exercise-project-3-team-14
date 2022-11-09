@@ -22,12 +22,12 @@ class Tests:
         """
         flag=1;
         ship_sizes=[1,2,3,4,5,6,19,40,50,"1","2","100","5","8","HI","hello"]
-        dims=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25,100,"10","20","5","6","Hi","bye"]
+        dims=[1,2,3,4,5,6,7,8,9,10,11,18,19,20,25,100,"10","20","5","6","Hi","bye"]
         
         for s in ship_sizes:
             for d in dims:
                 ship_size,dim = battleship.get(s,d)
-                if ship_size>dim or dim>20:
+                if ship_size>dim or dim>10:
                     flag=0
         assert flag,"Wrong initialization of ship size and dimension"
 
@@ -38,7 +38,7 @@ class Tests:
         """
         Verify that both boards are correctly set up
         """
-        dims=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+        dims=[1,2,3,4,5,6,7,8,9,10]
         num=0
         flag=1
         for dim in dims:
@@ -67,9 +67,9 @@ class Tests:
         """
         Verify that the ship was correctly placed (ship is of the correct length and on the board)
         """
-        dims=[10,11,12,13,14,15,16,17,18,19,20]
-        ships=[1,2,3,4,5,6,7,8,9]
-        check=[0 for i in range(99)]
+        dims=[5,6,7,8,9,10]
+        ships=[1,2,3,4,5]
+        check=[0 for i in range(30)]
         vals=[]
         flag=0
         for d in dims:
@@ -98,10 +98,10 @@ class Tests:
     
     def test_game_finish(self,monkeypatch):
         flag=1
-        cols=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T"]
-        rows=["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19"]
-        dims=[10,11,12,13,14,15,16,17,18,19,20]
-        ships=[1,2,3,4,5,6,7,8,9]
+        cols=["A","B","C","D","E","F","G","H","I","J"]
+        rows=["0","1","2","3","4","5","6","7","8","9"]
+        dims=[5,6,7,8,9,10]
+        ships=[1,2,3,4,5]
         inp=[]
         for i in cols:
             for j in rows:
