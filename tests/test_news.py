@@ -1,4 +1,4 @@
-import news
+from src.dailydose import news
 
 class TestNews:
 
