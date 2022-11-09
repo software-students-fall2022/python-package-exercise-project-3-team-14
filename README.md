@@ -58,7 +58,7 @@ Upon running the package, a main menu is displayed in which your options are lis
 
 ### Battleship Game
 
-- To play the battleship game, press 3 when the main menu is prompted.
+- To play the battleship game, press 4 when the main menu is prompted.
 
 - You will then be asked to enter the board dimensions and ship size. You can also choose to use the default settings.
 
