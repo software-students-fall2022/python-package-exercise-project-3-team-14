@@ -58,6 +58,7 @@ class Tests:
                     else:
                         if boardx[i][j]==" " and board[i][j]==" ":
                             num+=1
+            print(num)
             if num!=dim*dim:
                 flag=0
             num=0
