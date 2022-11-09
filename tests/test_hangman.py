@@ -27,7 +27,7 @@ class Tests:
         for i in range(-1, 12):
             j = i+1
             self.monkeypatch.setattr('builtins.input', lambda _: next(iter_list[j]))
-            actual = len(hang.hangman(i))
+            actual = len(hang.hangman(str(i)))
             assert actual >= 4 or actual <= 10, f"Expect the length of word to be between 4 and 10"
 
     def test_hangman_word(self):
@@ -41,7 +41,7 @@ class Tests:
         for i in range(-1, 12):
             j = i+1
             self.monkeypatch.setattr('builtins.input', lambda _: next(iter_list[j]))
-            actual = hang.hangman(i)
+            actual = hang.hangman(str(i))
             assert actual in english_words_lower_alpha_set, f"Expect word to be in the set of English word"
 
     def test_hangman_input(self):
