@@ -56,6 +56,14 @@ Upon running the package, a main menu is displayed in which your options are lis
 
 - Upon guessing the correct word or losing the game, you will be redirected to the main menu.
 
+### Battleship Game
+
+- To play the battleship game, press 3 when the main menu is prompted.
+
+- You will then be asked to enter the board dimensions and ship size. You can also choose to use the default settings.
+
+- Upon winning or exiting the game, you will be redirected to the main menu.
+
 
 ## Importing the Package
 
@@ -98,4 +106,20 @@ hang.hangma(num_letter=number_of_letters)
 Parameters
 
 - `num_letter`: the length of word you want to guess
-    - possible values: a string make up of numbers, the length of word acceptable is in between 4 and 10, inclusive
+    - possible values: a string make up of numbers, the length of word acceptable is in between [`"4"`, `"10"`], inclusive
+
+### 4. `battleship.main` -- start an interactive battleship game
+
+```
+battleship.main(ship_size="4", dimension="10")
+```
+
+Parameters
+
+- `dimension`: the size of the board (dimension * dimension)
+    - default: `"10"`
+    - possible values: a string make up of numbers, the board dimension acceptable is in between (`"1"`, `"10"`), inclusive
+
+- `ship_size`: the size of the hidden battleship
+    - default: `"4"`
+    - possible values: a string make up of numbers, the ship size acceptable is in between (`"0"`, `dimension`), exclusive
