@@ -22,11 +22,10 @@ class Tests:
         """
         self.monkeypatch = MonkeyPatch()
         iter_list = []
-        for i in range(13):
+        for i in range(12):
             iter_list.append(iter(list(string.ascii_lowercase)))
-        for i in range(-1, 12):
-            j = i+1
-            self.monkeypatch.setattr('builtins.input', lambda _: next(iter_list[j]))
+        for i in range(12):
+            self.monkeypatch.setattr('builtins.input', lambda _: next(iter_list[i]))
             actual = len(hang.hangman(str(i)))
             assert actual >= 4 or actual <= 10, f"Expect the length of word to be between 4 and 10"
 
@@ -36,11 +35,10 @@ class Tests:
         """
         self.monkeypatch = MonkeyPatch()
         iter_list = []
-        for i in range(13):
+        for i in range(12):
             iter_list.append(iter(list(string.ascii_lowercase)))
-        for i in range(-1, 12):
-            j = i+1
-            self.monkeypatch.setattr('builtins.input', lambda _: next(iter_list[j]))
+        for i in range(12):
+            self.monkeypatch.setattr('builtins.input', lambda _: next(iter_list[i]))
             actual = hang.hangman(str(i))
             assert actual in english_words_lower_alpha_set, f"Expect word to be in the set of English word"
 
