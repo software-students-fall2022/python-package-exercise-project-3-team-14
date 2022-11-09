@@ -3,7 +3,7 @@ import os
 import sys
 
 
-def get(ship_size="4", dimension="10"):
+def get(ship_size, dimension):
     if isinstance(ship_size, int) and isinstance(dimension, int):
         if ship_size < dimension and dimension <= 10 and dimension > 0 and ship_size > 0:
             return ship_size, dimension
@@ -133,7 +133,7 @@ def play(board, boardx, ship_size, dimension):
             return 1
 
 
-def main():
+def main(ship_size="4", dimension="10"):
     if len(sys.argv) >= 3:
         ship_size, dimension = get(sys.argv[1], sys.argv[2])
     else:
@@ -146,7 +146,7 @@ def main():
             ship_size, dimension = get(ship_size, dimension)
         else:
             print("Using default inputs... Ship size=4, Board Dimensions =10*10")
-            ship_size, dimension = get()
+            ship_size, dimension = get(ship_size, dimension)
 
     board, boardx = start_board(dimension)
     boardx = place_ship(ship_size, dimension, boardx)
