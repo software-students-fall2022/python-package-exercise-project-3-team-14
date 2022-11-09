@@ -2,7 +2,7 @@ from dailydose.hang import hangman
 
 
 def main():
-    hangman(5)
+    return
 
 
 if __name__ == '__main__':
