@@ -85,7 +85,7 @@ class Tests:
                                 val-=1
                                 i=i+1
                             while j+1<=d and boardx[i][j+1]=="*":
-                                val-=-1
+                                val-=1
                                 j=j+1
                             
                             flag=1
@@ -111,7 +111,7 @@ class Tests:
                 monkeypatch.setattr('builtins.input', lambda _: next(inputs))
                 board,boardx=battleship.start_board(d)
                 boardx=battleship.place_ship(s,d,boardx)
-                ans=battleship.play(board,boardx)
+                ans=battleship.play(board,boardx,s,d)
                 if ans==0:
                     flag=1
 

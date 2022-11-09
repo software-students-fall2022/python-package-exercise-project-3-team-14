@@ -85,7 +85,7 @@ def place_ship(ship_size,dimension,boardx):
 
 #loop which asks the users for input, checks user's input and prints board after updating it
 
-def play(board,boardx):
+def play(board,boardx,ship_size,dimension):
     continue_game=0  
     cnt=0            #for counting the total number of tries taken (only unique attempts and attempts with valid inputs are counted)
     strike=0         #counts the total number of correct strikes on ship
@@ -143,4 +143,4 @@ if __name__ == "__main__":
 
     board,boardx = start_board(dimension)
     boardx = place_ship(ship_size,dimension,boardx)
-    solved=play(board,boardx)
+    solved=play(board,boardx,ship_size,dimension)
