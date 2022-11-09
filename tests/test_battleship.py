@@ -58,8 +58,7 @@ class Tests:
                     else:
                         if boardx[i][j]==" " and board[i][j]==" ":
                             num+=1
-            print(num)
-            if num!=dim*dim:
+            if num!=(dim+1)*(dim+1):
                 flag=0
             num=0
         assert flag, "Error in creating starting board"
@@ -70,27 +69,31 @@ class Tests:
         """
         dims=[10,11,12,13,14,15,16,17,18,19,20]
         ships=[1,2,3,4,5,6,7,8,9]
+        vals=[]
         flag=0
         for d in dims:
             for s in ships:
+                val=s
                 board,boardx=battleship.start_board(d)
                 boardx=battleship.place_ship(s,d,boardx)
                 flag=0
                 for i in range(d+1):
                     for j in range(d+1):
                         if boardx[i][j]=="*":
-                            s=s-1
+                            val-=1
                             while i+1<=d and boardx[i+1][j]=="*":
-                                s=s-1
+                                val-=1
                                 i=i+1
                             while j+1<=d and boardx[i][j+1]=="*":
-                                s=s-1
+                                val-=-1
                                 j=j+1
+                            
                             flag=1
                             break
                     if flag:
+                        vals.append(val)
                         break        
-        assert ships==[0,0,0,0,0,0,0,0,0],"Ship not placed correctly"
+        assert vals==[0,0,0,0,0,0,0,0,0],"Ship not placed correctly"
     
     def test_game_finish(self,monkeypatch):
         flag=1
