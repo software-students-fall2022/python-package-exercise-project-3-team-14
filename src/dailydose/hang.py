@@ -3,7 +3,7 @@ import random
 
 
 def hangman(num_letter):
-    if type(num_letter) != int:
+    if not num_letter.isnumeric():
         print("The function only take positive integers!")
         return "code 1"
     if num_letter < 4:
