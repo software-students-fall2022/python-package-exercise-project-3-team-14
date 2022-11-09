@@ -60,7 +60,9 @@ Upon running the package, a main menu is displayed in which your options are lis
 
 - To play the battleship game, press 4 when the main menu is prompted.
 
-- You will then be asked to enter the board dimensions and ship size. You can also choose to use the default settings.
+- You will then be asked to enter the board dimensions and ship size. You can also choose to use the default settings. (if invoking the function from the command line, you can enter these values in the format - python3 -m battleship.py ship_size dimension
+
+- The game creates a dimension*dimension size board and keeps track of how many turns it takes for you to win! What do you think is the optimal strategy?
 
 - Upon winning or exiting the game, you will be redirected to the main menu.
 
@@ -100,7 +102,7 @@ Parameters
 ### 3. `hang.hangman` -- start an interactive hangman game
 
 ```
-hang.hangma(num_letter=number_of_letters)
+hang.hangman(num_letter=number_of_letters)
 ```
 
 Parameters
@@ -122,4 +124,4 @@ Parameters
 
 - `ship_size`: the size of the hidden battleship
     - default: `"4"`
-    - possible values: a string make up of numbers, the ship size acceptable is in between (`"0"`, `dimension`), exclusive
+    - possible values: a string make up of numbers, the ship size acceptable is in between (`"0"`, `dimension+1`), exclusive
