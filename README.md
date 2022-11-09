@@ -60,7 +60,7 @@ Upon running the package, a main menu is displayed in which your options are lis
 
 - To play the battleship game, press 4 when the main menu is prompted.
 
-- You will then be asked to enter the board dimensions and ship size. You can also choose to use the default settings. (if invoking the function from the command line, you can enter these values in the format - python3 -m battleship.py ship_size dimension
+- You will then be asked to enter the board dimensions and ship size. You can also choose to use the default settings.
 
 - The game creates a dimension*dimension size board and keeps track of how many turns it takes for you to win! What do you think is the optimal strategy?
 
@@ -120,8 +120,8 @@ Parameters
 
 - `dimension`: the size of the board (dimension * dimension)
     - default: `"10"`
-    - possible values: a string make up of numbers, the board dimension acceptable is in between (`"1"`, `"10"`), inclusive
+    - possible values: a string make up of numbers, the board dimension acceptable is in between [`"1"`, `"10"`], inclusive
 
 - `ship_size`: the size of the hidden battleship
     - default: `"4"`
-    - possible values: a string make up of numbers, the ship size acceptable is in between (`"0"`, `dimension+1`), exclusive
+    - possible values: a string make up of numbers, the ship size acceptable is in between [`"1"`, `dimension - 1`], inclusive
