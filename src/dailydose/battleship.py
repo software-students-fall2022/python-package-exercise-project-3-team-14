@@ -14,7 +14,7 @@ def get(ship_size="4", dimension = "10"):
         if ship_size.isnumeric() and dimension.isnumeric():
             ship_size=int(ship_size)
             dimension=int(dimension)
-            if ship_size<dimension and dimension<=20 and dimension>0 and ship_size>0:
+            if ship_size<=dimension and dimension<=20 and dimension>0 and ship_size>0:
                 return ship_size,dimension
             else:
                 print("The ship needs to be smaller than the board and maximum dimension size is 20, resorting to default inputs: Ship_size:4, Dimensions:10")
@@ -52,8 +52,8 @@ def start_board(dimension):
         boardx.append(board_rowx)
 
     #printing our board for the first time, this is the first thing shown when our program is executed
-    os.system("clear")
-    print("\n"+ " "*(dimension+1)+"Welcome to Battleship!\n ")
+    #os.system("clear")
+    print("\n\n\n"+ " "*(dimension+1)+"Welcome to Battleship!\n ")
     for i in range(dimension+1):
         for j in range(dimension+1):
             if i==0:
@@ -129,8 +129,8 @@ def play(board,boardx):
 
 
 if __name__ == "__main__":
-    if len(sys.argv)>=2:
-        ship_size,dimension = get(sys.argv[0],sys.argv[1])
+    if len(sys.argv)>=3:
+        ship_size,dimension = get(sys.argv[1],sys.argv[2])
     else:
         choice=input("No command line input detected. Do you want to select custom ship size, board dimensions? (y/n)")
         if choice=="Y" or choice=="y":
