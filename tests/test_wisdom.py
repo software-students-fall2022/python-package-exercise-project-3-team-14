@@ -6,7 +6,6 @@ class Tests:
     #
     # Test functions
     #
-
     def test_sanity_check(self):
         """
         Test debugging... making sure that we can run a simple test that always passes.
@@ -19,7 +18,7 @@ class Tests:
     def test_get(self):
         """
         Verify get() function and make sure it returns a non-empty string.
-        Note that for example purposes, we have not used the example_fixture in this test functino.
+        Note that for example purposes, we have not used the example_fixture in this test function.
         """
         # since get returns a random string, run it a bunch of times and verify the output
         for i in range(100):
