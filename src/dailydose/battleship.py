@@ -3,47 +3,53 @@ import os
 import sys
 
 
-def get(ship_size=4, dimension = 10):
-    if ship_size<dimension:
-        return ship_size,dimension
+def get(ship_size="4", dimension = "10"):
+    if isinstance(ship_size,int) and isinstance(dimension,int):
+        if ship_size<dimension and dimension<=20 and dimension>0 and ship_size>0:
+            return ship_size,dimension
+        else:
+            print("The ship needs to be smaller than the board and maximum dimension size is 20, resorting to default inputs: Ship_size:4, Dimensions:10")
+            return 4,10
+    elif isinstance(ship_size,str) and isinstance(dimension,str):
+        if ship_size.isnumeric() and dimension.isnumeric():
+            ship_size=int(ship_size)
+            dimension=int(dimension)
+            if ship_size<dimension and dimension<=20 and dimension>0 and ship_size>0:
+                return ship_size,dimension
+            else:
+                print("The ship needs to be smaller than the board and maximum dimension size is 20, resorting to default inputs: Ship_size:4, Dimensions:10")
+                return 4,10
+        else:
+            print("Invalid input type, returning default values")
+            return 4,10
     else:
-        print("The ship needs to be smaller than the board, resorting to default inputs: Ship_size:4, Dimensions:10")
+        print("Invalid input type, returning default values")
         return 4,10
 
+def start_board(dimension):
 
-def start_board(ship_size,dimension):
-    #initialising our board with appropriate row and column names
+    #initialising our board with appropriate row and column names and another board to store info
     board=[]
-    for i in range(dimension+1):
-        board_row=[]
-        for j in range(dimension+1):
-            if j==0:
-                if i==0:
-                    board_row.append(" ")
-                else:
-                    board_row.append(i-1)
-            elif i==0:
-                board_row.append(chr(ord('A')+j-1))
-            else:
-                board_row.append(" ")
-        board.append(board_row)
-
-    #initialising another board where the info of our ship will be stored
     boardx=[]
     for i in range(dimension+1):
+        board_row=[]
         board_rowx=[]
         for j in range(dimension+1):
             if j==0:
                 if i==0:
+                    board_row.append(" ")
                     board_rowx.append(" ")
                 else:
+                    board_row.append(i-1)
                     board_rowx.append(i-1)
             elif i==0:
+                board_row.append(chr(ord('A')+j-1))
                 board_rowx.append(chr(ord('A')+j-1))
             else:
+                board_row.append(" ")
                 board_rowx.append(" ")
+        board.append(board_row)
         boardx.append(board_rowx)
-    
 
     #printing our board for the first time, this is the first thing shown when our program is executed
     os.system("clear")
@@ -84,7 +90,12 @@ def play(board,boardx):
     cnt=0            #for counting the total number of tries taken (only unique attempts and attempts with valid inputs are counted)
     strike=0         #counts the total number of correct strikes on ship
     while(continue_game==0):
+        print("Enter 'exit' to leave game")
         game_input=input("\n  Guess the coordinates of the hidden ship (eg.A6):  ")
+        if game_input == "exit":
+            print("Goodbye! You played for "+str(cnt)+" turns")
+            return 0
+
         guess=list(game_input)
         if len(guess)==2 and ord('A')-1<ord(guess[0])<ord('A')+dimension and guess[1].isdigit() and 0<=int(guess[1])<dimension:
             row_coordinate= int(guess[1])+1
@@ -114,10 +125,22 @@ def play(board,boardx):
         if strike==ship_size:
             continue_game=1
             print("\n  Congratulations! You Won!\n""  You took "+str(cnt)+" turns to finish the game.")
+            return 1
 
 
 if __name__ == "__main__":
-    ship_size,dimension = get()
-    board,boardx = start_board(ship_size,dimension)
+    if len(sys.argv)>=2:
+        ship_size,dimension = get(sys.argv[0],sys.argv[1])
+    else:
+        choice=input("No command line input detected. Do you want to select custom ship size, board dimensions? (y/n)")
+        if choice=="Y" or choice=="y":
+            dimension=input("Input board dimensions (1-20): ")
+            ship_size=input("Input ship size (lesser than dimension of board): ")
+            ship_size,dimension = get(ship_size,dimension)
+        else:
+            print("Using default inputs... Ship size=4, Board Dimensions =10*10")
+            ship_size,dimension = get()
+
+    board,boardx = start_board(dimension)
     boardx = place_ship(ship_size,dimension,boardx)
-    play(board,boardx)
+    solved=play(board,boardx)

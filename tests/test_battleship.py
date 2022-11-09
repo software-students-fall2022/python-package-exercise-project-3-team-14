@@ -21,8 +21,8 @@ class Tests:
         Verify get() function and make sure it returns the correct starting board.
         """
         flag=1;
-        ship_sizes=[1,2,3,4,5,6,19,40,50]
-        dims=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25,100]
+        ship_sizes=[1,2,3,4,5,6,19,40,50,"1","2","100","5","8","HI","hello"]
+        dims=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25,100,"10","20","5","6","Hi","bye"]
         
         for s in ship_sizes:
             for d in dims:
@@ -38,43 +38,81 @@ class Tests:
         """
         Verify that both boards are correctly set up
         """
-        ship_sizes=[1,2,3,4,5]
-        dims=[6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+        dims=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
         num=0
         flag=1
-        for ship_size in ship_sizes:
-            for dim in dims:
-                board,boardx = battleship.start_board(ship_size,dim)
-                for i in range(dim+1):
-                    for j in range(dim+1):
-                        if j==0:
-                            if i==0:
-                                if boardx[i][j]==" " and board[i][j]==" ":
-                                    num+=1
-                            else:
-                                if boardx[i][j]==i-1 and board[i][j]==i-1:
-                                    num+=1
-                        elif i==0:
-                            if boardx[i][j]==chr(ord('A')+j-1) and board[i][j]==chr(ord('A')+j-1):
+        for dim in dims:
+            board,boardx = battleship.start_board(dim)
+            for i in range(dim+1):
+                for j in range(dim+1):
+                    if j==0:
+                        if i==0:
+                            if boardx[i][j]==" " and board[i][j]==" ":
                                 num+=1
                         else:
-                            if boardx[i][j]==" " and boardx[i][j]==" ":
+                            if boardx[i][j]==i-1 and board[i][j]==i-1:
                                 num+=1
-                if num!=dim*dim:
-                    flag=0
-                num=0
+                    elif i==0:
+                        if boardx[i][j]==chr(ord('A')+j-1) and board[i][j]==chr(ord('A')+j-1):
+                            num+=1
+                    else:
+                        if boardx[i][j]==" " and board[i][j]==" ":
+                            num+=1
+            if num!=dim*dim:
+                flag=0
+            num=0
         assert flag, "Error in creating starting board"
 
     def test_place_ship(self):
         """
-        Verify that the ship was correctly placed
+        Verify that the ship was correctly placed (ship is of the correct length and on the board)
         """
-        ship_size=4
-        dim=10
-        ship_placed=4
+        dims=[10,11,12,13,14,15,16,17,18,19,20]
+        ships=[1,2,3,4,5,6,7,8,9]
+        flag=0
+        for d in dims:
+            for s in ships:
+                board,boardx=battleship.start_board(d)
+                boardx=battleship.place_ship(s,d,boardx)
+                flag=0
+                for i in range(d+1):
+                    for j in range(d+1):
+                        if boardx[i][j]=="*":
+                            s=s-1
+                            while i+1<=d and boardx[i+1][j]=="*":
+                                s=s-1
+                                i=i+1
+                            while j+1<=d and boardx[i][j+1]=="*":
+                                s=s-1
+                                j=j+1
+                            flag=1
+                            break
+                    if flag:
+                        break        
+        assert ships==[0,0,0,0,0,0,0,0,0],"Ship not placed correctly"
     
-    def test_game_finish(self):
-        ...
+    def test_game_finish(self,monkeypatch):
+        flag=1
+        cols=["A","B","C","D","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T"]
+        rows=["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19"]
+        dims=[10,11,12,13,14,15,16,17,18,19,20]
+        ships=[1,2,3,4,5,6,7,8,9]
+        inp=[]
+        for i in cols:
+            for j in rows:
+                inp.append(i+j)
+        inputs = iter(inp)
+        for d in dims:
+            for s in ships:
+                monkeypatch.setattr('builtins.input', lambda _: next(inputs))
+                board,boardx=battleship.start_board(d)
+                boardx=battleship.place_ship(s)
+                ans=battleship.play(board,boardx)
+                if ans==0:
+                    flag=1
+
+        assert flag, "Game did not complete to success"
+
     
 
 

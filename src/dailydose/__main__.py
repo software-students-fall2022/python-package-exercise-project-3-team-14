@@ -1,7 +1,7 @@
 from datetime import date
 from dailydose import hang
 from dailydose import fact
-
+from dailydose import battleship
 
 def main():
     run = True
@@ -37,6 +37,7 @@ def main():
 
         elif user_selection == "4":
             print("DO YOUR MAGIC battleship...")
+            battleship()
 
         else:
             print("Bye!")
