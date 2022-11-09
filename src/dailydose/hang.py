@@ -2,31 +2,6 @@ from english_words import english_words_lower_alpha_set
 import random
 
 
-def print_hangman(num_guess, total_num):
-    num_wrong = total_num-num_guess
-    hang = [" ========="]
-    total_height = total_num - 3 - int((total_num - 8)/2)
-    rope_length = 1 + int((total_num - 8)/2)
-    for i in range(0, min(total_height, num_wrong)):
-        hang.insert(0, "\t     |")
-        num_wrong -= 1
-    if num_wrong > 0:
-        hang.insert(0, "\t +---+")
-        num_wrong -= 1
-    index = 1
-    for i in range(0, min(rope_length, num_wrong)):
-        hang[index] = "\t |   |"
-        num_wrong -= 1
-        index += 1
-    if num_wrong > 0:
-        index = 1 + rope_length
-        hang[index] = "\t O   |"
-        hang[index + 1] = "\t/|\\  |"
-        hang[index + 2] = "\t/ \\  |"
-    for i in range(len(hang)):
-        print(hang[i])
-
-
 def hangman(num_letter):
     if type(num_letter) != int:
         print("The function only take positive integers!")
@@ -44,7 +19,28 @@ def hangman(num_letter):
     correct = 0
     cache = []
     while True:
-        print_hangman(num_guess, total_guess)
+        num_wrong = total_guess - num_guess
+        hang = [" ========="]
+        total_height = total_guess - 3 - int((total_guess - 8) / 2)
+        rope_length = 1 + int((total_guess - 8) / 2)
+        for i in range(0, min(total_height, num_wrong)):
+            hang.insert(0, "\t     |")
+            num_wrong -= 1
+        if num_wrong > 0:
+            hang.insert(0, "\t +---+")
+            num_wrong -= 1
+        index = 1
+        for i in range(0, min(rope_length, num_wrong)):
+            hang[index] = "\t |   |"
+            num_wrong -= 1
+            index += 1
+        if num_wrong > 0:
+            index = 1 + rope_length
+            hang[index] = "\t O   |"
+            hang[index + 1] = "\t/|\\  |"
+            hang[index + 2] = "\t/ \\  |"
+        for i in range(len(hang)):
+            print(hang[i])
         print("The word is: " + "".join(view))
         if correct == len(word):
             print("Congratulations, the word is " + "".join(word))
@@ -72,7 +68,3 @@ def hangman(num_letter):
         else:
             num_guess -= 1
         print("\n", end="")
-
-
-if __name__ == '__main__':
-    hangman(4)
