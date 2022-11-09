@@ -106,7 +106,7 @@ class Tests:
             for s in ships:
                 monkeypatch.setattr('builtins.input', lambda _: next(inputs))
                 board,boardx=battleship.start_board(d)
-                boardx=battleship.place_ship(s)
+                boardx=battleship.place_ship(s,d,boardx)
                 ans=battleship.play(board,boardx)
                 if ans==0:
                     flag=1
