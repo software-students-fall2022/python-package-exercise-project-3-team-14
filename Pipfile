@@ -8,6 +8,9 @@ pytest = "*"
 dailydose = {editable = true, path = "."}
 english-words = "*"
 flake8 = "*"
+bs4 = "*"
+beautifulsoup4 = "*"
+requests = "*"
 
 [dev-packages]
 
