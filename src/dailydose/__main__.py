@@ -4,6 +4,7 @@ from dailydose import fact
 from dailydose import news
 from dailydose import battleship
 
+
 def main():
     run = True
 
@@ -30,7 +31,7 @@ def main():
             print("\n"+random_fact[0]['content'])
 
         elif user_selection == "2":
-           
+
             choose = True
             while choose:
                 print("Choose from the following subjects... ")
@@ -43,7 +44,8 @@ def main():
                 print("7. Business")
                 print("8. <Return to main menu>")
 
-                selection = input("Enter the number of the subject you want to explore: ")
+                selection = input(
+                    "Enter the number of the subject you want to explore: ")
                 if selection not in ['1', '2', '3', '4', '5', '6', '7', '8']:
                     print("Invalid selection. Please try again.")
                     continue
@@ -84,8 +86,7 @@ def main():
             hang.hangman(num_letter=number_of_letters)
 
         elif user_selection == "4":
-            print("DO YOUR MAGIC battleship...")
-            battleship()
+            battleship.main()
 
         else:
             print("Bye!")
