@@ -98,7 +98,7 @@ class Tests:
     
     def test_game_finish(self,monkeypatch):
         flag=1
-        cols=["A","B","C","D","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T"]
+        cols=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T"]
         rows=["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19"]
         dims=[10,11,12,13,14,15,16,17,18,19,20]
         ships=[1,2,3,4,5,6,7,8,9]
@@ -106,15 +106,19 @@ class Tests:
         for i in cols:
             for j in rows:
                 inp.append(i+j)
-        inputs = iter(inp)
+        
         for d in dims:
             for s in ships:
+                inputs = iter(inp)
                 monkeypatch.setattr('builtins.input', lambda _: next(inputs))
                 board,boardx=battleship.start_board(d)
                 boardx=battleship.place_ship(s,d,boardx)
                 ans=battleship.play(board,boardx,s,d)
                 if ans==0:
-                    flag=1
+                    flag=0
+                    break
+
+                
 
         assert flag, "Game did not complete to success"
 
