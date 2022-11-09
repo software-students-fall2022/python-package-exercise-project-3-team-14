@@ -69,6 +69,7 @@ class Tests:
         """
         dims=[10,11,12,13,14,15,16,17,18,19,20]
         ships=[1,2,3,4,5,6,7,8,9]
+        check=[0 for i in range(99)]
         vals=[]
         flag=0
         for d in dims:
@@ -93,7 +94,7 @@ class Tests:
                     if flag:
                         vals.append(val)
                         break        
-        assert vals==[0,0,0,0,0,0,0,0,0],"Ship not placed correctly"
+        assert vals==check,"Ship not placed correctly"
     
     def test_game_finish(self,monkeypatch):
         flag=1
