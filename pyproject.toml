@@ -12,7 +12,7 @@ authors = [
   { name="Paula Seraphim", email="pas580@nyu.edu" },
   { name="Winston Zhang", email="shz231@nyu.edu" },
 ]
-license = { file = "LICENSE" }
+license = "GPL-3.0-only"
 readme = "README.md"
 keywords = ["dailydose"]
 requires-python = ">=3.7"
