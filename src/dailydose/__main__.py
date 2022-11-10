@@ -12,7 +12,7 @@ def main():
         today = date.today()
         print(f"{'*' * 30}")
         print(
-            f"Today is {today.strftime('%Y-%m-%d')}. Feeling bored? How about...")
+            f"Today is {today.strftime('%Y-%m-%d')}. Feeling bored? How about...\n")
 
         print(f"\t 1. See a fun fact")
         print(f"\t 2. See a news")
@@ -23,11 +23,11 @@ def main():
         user_selection = input("Choose a number 1-5...\n> ")
         while user_selection not in ["1", "2", "3", "4", "5"]:
             print("Wrong number...")
-            user_selection = input("Choose a number 1-5...\n> ")
+            user_selection = input("\n\nChoose a number 1-5...\n\> ")
 
         if user_selection == "1":
             fact_count = input(
-                "How many facts do you want to see? Please choose between 1-100...\n> ")
+                "\nHow many facts do you want to see? Please choose between 1-100...\n> ")
             while not fact_count.isnumeric() and int(fact_count) not in range(1, 101):
                 print("Invalid number. Please try again.")
                 fact_count = input(
@@ -58,7 +58,7 @@ def main():
 
             choose = True
             while choose:
-                print("Choose from the following subjects... ")
+                print("\nChoose from the following subjects... ")
                 print("1. Culture")
                 print("2. Politics")
                 print("3. Science")
@@ -106,7 +106,7 @@ def main():
                 print("Returning to main menu...")
 
         elif user_selection == "3":
-            number_of_letters = input("Choose the length of word 4-10:\n> ")
+            number_of_letters = input("\nChoose the length of word 4-10:\n> ")
             hang.hangman(num_letter=number_of_letters)
 
         elif user_selection == "4":
