@@ -69,6 +69,8 @@ Upon running the package, a main menu is displayed in which your options are lis
 
 ## Importing the Package
 
+For example usage of the package, see [`example/example.py`](example/example.py).
+
 ### 1. `fact.get` -- generate a list of random fun fact objects
 
 ```
