@@ -42,10 +42,9 @@ class TestNews:
         """
         Test the get_headlines function. Ensure valid inputs are processed correctly and invalid webpages are handled.
         """
-        expected = True
         for subject in self.subjects:
             actual = news.get_headlines(subject, "SUBJECT")
-            assert actual == expected, f"Expected a return value of {expected}. Received {actual}."
+            assert type(actual) == list, f"Expected a return type of list. Received {type(actual)}."
 
         expected2 = False
         actual2 = news.get_headlines("invalid", "INVALID")
