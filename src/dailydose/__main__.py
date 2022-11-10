@@ -10,7 +10,7 @@ def main():
 
     while run:
         today = date.today()
-        print(f"{'*' * 20}")
+        print(f"{'*' * 30}")
         print(
             f"Today is {today.strftime('%Y-%m-%d')}. Feeling bored? How about...")
 
@@ -26,9 +26,33 @@ def main():
             user_selection = input("Choose a number 1-5...\n> ")
 
         if user_selection == "1":
-            random_fact = fact.get()
-            print(random_fact[0]['heading'])
-            print("\n"+random_fact[0]['content'])
+            fact_count = input(
+                "How many facts do you want to see? Please choose between 1-100...\n> ")
+            while not fact_count.isnumeric() and int(fact_count) not in range(1, 101):
+                print("Invalid number. Please try again.")
+                fact_count = input(
+                    "How many facts do you want to see? Please choose between 1-100...\n> ")
+
+            fact_details = input(
+                "Do you want to see the details of the facts? (y/n)\n> ")
+            while fact_details.lower() not in ["y", "n"]:
+                print("Invalid input. Please try again.")
+                fact_details = input(
+                    "Do you want to see the details of the facts? (y/n)\n> ")
+
+            if fact_details.lower() == "y":
+                include_details = True
+            else:
+                include_details = False
+
+            random_facts = fact.get(
+                count=int(fact_count), include_details=include_details)
+
+            for (i, random_fact) in enumerate(random_facts):
+                print(f"{'-' * 15}")
+                print(f"Random Fun Fact #{i+1}:")
+                print(random_fact['heading'])
+                print("\n"+random_fact['content'])
 
         elif user_selection == "2":
 
@@ -91,6 +115,8 @@ def main():
         else:
             print("Bye!")
             run = False
+        
+        print(f"{'*' * 30}\n\n")
 
 
 if __name__ == '__main__':
