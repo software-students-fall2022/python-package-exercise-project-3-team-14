@@ -134,7 +134,9 @@ def play(board, boardx, ship_size, dimension):
 
 
 def main(ship_size="4", dimension="10"):
-    if len(sys.argv) >= 3:
+    if ship_size!="4" or dimension!="10":
+        ship_size, dimension = get(ship_size, dimension)
+    elif len(sys.argv) >= 3:
         ship_size, dimension = get(sys.argv[1], sys.argv[2])
     else:
         choice = input(
