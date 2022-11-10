@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dailydose"
-description = "A package that gives you your daily dose of fun!"
+description = "Boredom kills. Here's a package that gives you a daily dose of fun!"
 version = "0.0.9"
 authors = [
   { name="Larry Li", email="zl2902@nyu.edu" },
