@@ -1,3 +1,9 @@
+# Upload Script
+my_upload.sh
+
+# IDE temp
+.idea
+
 # mac junk
 .DS_Store
 
@@ -147,3 +153,6 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+*.iml
+.idea/
+*.xml
