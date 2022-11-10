@@ -48,7 +48,7 @@ class TestNews:
 
         expected2 = False
         actual2 = news.get_headlines("invalid", "INVALID")
-        assert actual2 == expected2, f"Test for invalid subject. Expected a return value of {expected}. Received {actual}."
+        assert actual2 == expected2, f"Test for invalid subject. Expected a return value of {expected2}. Received {actual}."
 
 
           
